@@ -1,3 +1,5 @@
+> Scope: Alma's Random Forest experiment report. The team subsequently selected Ali's model for the final Kaggle submission. The scores below are Alma's local experiment results, not Ali's results or Kaggle leaderboard scores.
+
 # Random Forest improvement results
 
 Run: rf_improvement_20261107T200156_163772Z
@@ -48,4 +50,4 @@ At threshold 0.5, false positives rose from 39 to 49, while false negatives fell
 
 The most confident baseline errors included non-English passages, recipes, and a technical abstract. The style extractor uses English-word regexes and heuristic sentence splitting; multilingual text is an important limitation to investigate. These selected examples do not establish population-level failure patterns.
 
-All six AUROCs were independently recomputed from saved predictions; sample alignment, split membership, CV isolation and saved notebook outputs passed verification. No submission.csv has been generated and no Kaggle upload occurred.
+All six AUROCs were independently recomputed from saved predictions; sample alignment, split membership, CV isolation and saved notebook outputs passed verification. At the time of this validation report, no submission.csv had been generated and no Kaggle upload had occurred. Subsequent export and team-selection updates are documented in ../EXPERIMENT_HISTORY.md.

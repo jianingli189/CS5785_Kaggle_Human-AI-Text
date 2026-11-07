@@ -88,4 +88,11 @@ The required unlabeled-data experiment and learning curve are still separate tas
 
 At the user's request, refit the CV-selected style-only RF (unchanged 21 features and parameters) on all 10,000 labeled training rows. Export notebook: Alma_RF_Kaggle_Export.ipynb.
 Output: submissions/rf_style_20261107T200909_355010Z/submission_rf_style.csv.
-Verified exactly 3,000 rows, columns id,label, IDs in template order, and finite P(AI) in [0,1]. Provenance/hashes are in submission_metadata.json. No Kaggle upload has occurred. The previous 0.989913 validation score belongs to the 8,000-row model; the refit does not have a new held-out score.
+Verified exactly 3,000 rows, columns id,label, IDs in template order, and finite P(AI) in [0,1]. Provenance/hashes are in submission_metadata.json. At the time of this export, no Kaggle upload had occurred. The previous 0.989913 validation score belongs to the 8,000-row model; the refit does not have a new held-out score.
+
+
+## Team selection update — 2026-11-07
+
+Alma later reported a Kaggle score of 89-plus for her RF submission and approximately 92 for Ali's model. The team selected Ali's model for its final Kaggle submission. These approximate scores are user-reported; exact leaderboard values, submission IDs, and mapping to saved prediction files remain to be verified.
+
+Alma's RF notebooks, scripts and candidate CSV remain experiment/comparison artifacts. They do not implement the team's selected final model. Ali's and Jennie's contributions and the combined report still need to be integrated. Earlier no-upload statements describe the state at the time of the corresponding experiment, not the current team status. Local validation AUROC remains unchanged.
