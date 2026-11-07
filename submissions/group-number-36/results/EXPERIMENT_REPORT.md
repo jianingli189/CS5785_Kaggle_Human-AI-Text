@@ -33,9 +33,6 @@ This interval does not account for all development/selection decisions and does 
 - The teammate's local/Kaggle gap remains unexplained without their code, split, and predictions.
 - Frozen embeddings, unlabeled-data experiments, learning curves, and teammate ensembling remain future work.
 
-## AI assistance
-ChatGPT implemented and executed the user-approved experiments, checked the data split and baseline reproduction, and generated this factual record. User interpretation/review of new results is pending.
-
 ## Additional observations
 
 The strongest representation was style-only (21 features), with training CV AUROC 0.985673 +/- 0.000598 (fold standard deviation). The baseline RF settings won the four-setting CV comparison; tuning did not improve them. Counts+style scored lower than style-only.

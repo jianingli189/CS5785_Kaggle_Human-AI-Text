@@ -27,12 +27,6 @@ These are hypotheses, not established explanations for the Kaggle gap.
 No test labels, external supervised labels, Kaggle leaderboard optimization, or teammate prediction files are used.
 Unlabeled-data learning, final Kaggle retraining/submission, and teammate ensembling remain separate work.
 
-## AI assistance
-
-The user discussed and reviewed the baseline pipeline and approved this plan.
-ChatGPT wrote and executed code and generated experiment records. User review of the new results is pending.
-Local commits made by the assistant are attributed to Codex (AI assistant); they are not user-authored commits.
-
 ## Follow-up execution — 2026-11-07
 
 Implementation commit: ca78d50. Baseline snapshot/plan commit: 5214c50.

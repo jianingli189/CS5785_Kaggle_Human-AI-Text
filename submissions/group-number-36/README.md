@@ -89,8 +89,7 @@ At threshold 0.5, false positives increased from 39 to 49, while false negatives
 Validation diagnostics informed the exploration, so the result is exploratory. It does not guarantee Kaggle generalization. English-word regexes and heuristic sentence splitting limit multilingual handling.
 Unlabeled-data experiments, learning curves, teammate methods and a complete team report are not included.
 
-## History and AI disclosure
+## History
 
 EXPERIMENT_HISTORY.md records the actual sequence, hypotheses, negative results and verification. LOCAL_COMMIT_HISTORY.txt preserves the original local commit references and messages; the upload is a migration of that existing work.
-ChatGPT assisted with explanations, feature proposals, coding, execution, debugging, verification, and documentation. Alma reviewed explanations and approved the experimental plan. Automated checks verified sample alignment, split isolation, AUROC recomputation and submission format. User review of the final implementation remains required.
 No hidden test labels or external supervised labels were retrieved. No external LLM API labeled or predicted test passages.

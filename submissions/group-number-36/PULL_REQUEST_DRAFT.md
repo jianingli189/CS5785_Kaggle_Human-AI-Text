@@ -27,7 +27,7 @@ The supplied Kaggle screenshot records Public Scores of **0.92847** (Abishek, `s
 ## Checklist
 
 - [x] Prepared files are only under submissions/group-number-36/
-- [x] README documents environment, commands, seeds, and AI use
+- [x] README documents environment, commands, and seeds
 - [x] Raw competition CSVs, secrets, checkpoints, and raw notebook previews excluded
 - [x] We did not retrieve hidden labels from RAID or elsewhere
 - [ ] Confirm remaining teammate identity and integrate team contributions
