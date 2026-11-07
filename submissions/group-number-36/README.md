@@ -2,19 +2,30 @@
 
 ## Contribution status and team model choice
 
-**This directory currently contains Alma's Random Forest experiments and comparison results, not the team's final selected model. The team has selected Ali's model for the final Kaggle submission.**
+**This directory contains Alma's Random Forest experiments and comparison results, not a finalized team submission. Abishek's model is the current leading candidate and is still being improved.**
 
-Alma reports a Kaggle score of 89-plus for her RF submission and approximately 92 for Ali's submission. These are approximate, user-reported scores, not independently verified leaderboard measurements; exact scores and submission IDs should be added for the report. They are separate from Alma's local validation AUROC of 0.989913.
+All three teammates' methods should be retained for comparison and reproducibility. Currently only Alma's code and results are present; Abishek's and Jennie's methods and the combined team report still need to be integrated. The current `train.py`, `predict.py`, notebooks and `results/submission_rf_style.csv` reproduce **Alma's RF candidate only**.
 
-All three teammates' methods should be retained for comparison and reproducibility. Currently only Alma's code and results are present; Ali's selected model, Jennie's method, and the combined team report still need to be integrated. The current `train.py`, `predict.py`, notebooks, and `results/submission_rf_style.csv` reproduce **Alma's RF candidate only**. They are not entrypoints or predictions for Ali's model.
+## Current Kaggle Public Scores (2026-11-07)
 
+Transcribed from the team's Kaggle screenshot supplied by Alma. These are Public Scores, not private/final leaderboard results or local validation scores.
+
+| Contributor | Kaggle submitter | Submission file | Public Score |
+| --- | --- | --- | ---: |
+| Abishek (called Ali in conversation) | ac3388 | stack_nbsvm_stylo.csv | 0.92847 |
+| Liyan (Alma) Yang | Liyan Yang | submission_rf_style.csv | 0.89682 |
+| Jianing (Jennie) Li | Jianing Li | submission_Jennie_TF_MiniLM_SVM_C1.csv | 0.84249 |
+
+Abishek's submission is currently the leading candidate and the team's intended direction. He is still improving it; the final model/version is not yet locked. The screenshot does not show a final submission selected. Model internals cannot be established from filenames alone.
+
+The project planning document names the third teammate **Abishek**. His Kaggle display name is **ac3388**; full official name and Cornell NetID remain unconfirmed (the display name alone does not verify a NetID).
 
 ## Team
 
 - Kaggle team name: **Group Number 36** (confirmed by the user).
 - Liyan (Alma) Yang — **ly462** — Random Forest experiments and candidate predictions.
 - Jianing (Jennie) Li — **jl4837** — listed teammate; other method code is not included here.
-- Ali — full name and NetID **pending confirmation**; other method code is not included here.
+- Abishek — full name and NetID **pending confirmation**; other method code is not included here.
 
 ## Setup
 
@@ -46,7 +57,7 @@ python train.py --train data/train.csv --seed 42 --full --model-out artifacts/fu
 python predict.py --test data/test.csv --template data/sample_submission.csv --model artifacts/full_model.joblib --out submission_rf_style.csv
 ```
 
-The full model is trained on all 10,000 supplied labeled examples. Output columns are id,label, where label is P(AI=1), for 3,000 test IDs in template order. The checked candidate is in results/submission_rf_style.csv. Alma subsequently reported uploading an RF submission with a score of 89-plus; the exact score and mapping to this saved CSV have not been independently verified.
+The full model is trained on all 10,000 supplied labeled examples. Output columns are id,label, where label is P(AI=1), for 3,000 test IDs in template order. The checked candidate is in results/submission_rf_style.csv. The supplied Kaggle screenshot shows `submission_rf_style.csv` with Public Score **0.89682**. This is separate from the local validation AUROC **0.989913**; matching the filename does not independently verify uploaded file bytes.
 
 ## Reproduce experiments / notebooks
 

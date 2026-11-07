@@ -1,4 +1,4 @@
-> Scope: Alma's Random Forest experiment report. The team subsequently selected Ali's model for the final Kaggle submission. The scores below are Alma's local experiment results, not Ali's results or Kaggle leaderboard scores.
+> Scope: Alma's Random Forest experiment report. Abishek's model is currently the leading candidate and is still being improved; the final version is not locked. The scores below are Alma's local experiment results, not Abishek's results or Kaggle leaderboard scores.
 
 # Random Forest improvement results
 

@@ -91,8 +91,22 @@ Output: submissions/rf_style_20261107T200909_355010Z/submission_rf_style.csv.
 Verified exactly 3,000 rows, columns id,label, IDs in template order, and finite P(AI) in [0,1]. Provenance/hashes are in submission_metadata.json. At the time of this export, no Kaggle upload had occurred. The previous 0.989913 validation score belongs to the 8,000-row model; the refit does not have a new held-out score.
 
 
-## Team selection update — 2026-11-07
+## Team comparison update — 2026-11-07
 
-Alma later reported a Kaggle score of 89-plus for her RF submission and approximately 92 for Ali's model. The team selected Ali's model for its final Kaggle submission. These approximate scores are user-reported; exact leaderboard values, submission IDs, and mapping to saved prediction files remain to be verified.
+This corrects the earlier approximate scores and premature description of a finalized model choice. The project planning document identifies the third teammate as Abishek (called Ali in conversation); his full official name and NetID are not yet confirmed.
 
-Alma's RF notebooks, scripts and candidate CSV remain experiment/comparison artifacts. They do not implement the team's selected final model. Ali's and Jennie's contributions and the combined report still need to be integrated. Earlier no-upload statements describe the state at the time of the corresponding experiment, not the current team status. Local validation AUROC remains unchanged.
+## Current Kaggle Public Scores (2026-11-07)
+
+Transcribed from the team's Kaggle screenshot supplied by Alma. These are Public Scores, not private/final leaderboard results or local validation scores.
+
+| Contributor | Kaggle submitter | Submission file | Public Score |
+| --- | --- | --- | ---: |
+| Abishek (called Ali in conversation) | ac3388 | stack_nbsvm_stylo.csv | 0.92847 |
+| Liyan (Alma) Yang | Liyan Yang | submission_rf_style.csv | 0.89682 |
+| Jianing (Jennie) Li | Jianing Li | submission_Jennie_TF_MiniLM_SVM_C1.csv | 0.84249 |
+
+Abishek's submission is currently the leading candidate and the team's intended direction. He is still improving it; the final model/version is not yet locked. The screenshot does not show a final submission selected. Model internals cannot be established from filenames alone.
+
+The project planning document names the third teammate **Abishek**. His Kaggle display name is **ac3388**; full official name and Cornell NetID remain unconfirmed (the display name alone does not verify a NetID).
+
+Alma's RF artifacts remain reproducible comparison materials. Abishek's and Jennie's code and the combined report still need integration. Earlier no-upload statements describe the state at those experiments. Local validation measurements are unchanged.
