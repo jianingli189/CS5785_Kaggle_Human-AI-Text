@@ -2,37 +2,36 @@
 
 [Submission] group-number-36 — ly462, jl4837, [Abishek NetID pending]
 
-## Team
+## Team and scope
 
-- Kaggle team name: Group Number 36
-- Members: Liyan (Alma) Yang (ly462), Jianing (Jennie) Li (jl4837), Abishek (full name / NetID pending)
-- Report PR URL field will use: the eventual course PR URL
-- Scope: Alma's RF experiments and comparison artifacts only. Abishek's model is currently leading and still being improved; the final version is not locked; Abishek's and Jennie's code and the full report remain to be integrated.
+- Liyan (Alma) Yang (ly462): Random Forest experiments and candidate predictions.
+- Jianing Li (jl4837): SVM, TF/MiniLM fusion, word/character feature optimization and calibrated candidate predictions.
+- Abishek: official full name and NetID pending; implementation not yet integrated.
+- Team name: Group Number 36. The report must use the eventual **course PR URL**, not just this team branch.
 
-## Summary
+## Included evidence
 
-Compare six representations with a Random Forest under a fixed stratified 2,000-row validation protocol, using training-only three-fold CV to select the representation and RF settings. Alma's selected RF candidate (not the team final model) achieves validation AUROC 0.989913. Include all comparisons, negative tuning results, diagnostic metrics, and a reproducible 10,000-row refit that regenerates the candidate Kaggle predictions.
+Alma's RF package is under `alma_rf/`; Jianing's SVM package is under `jianing_svm/`. Both use the same 8,000/2,000 stratified split. Alma selected the style-only RF through training-only CV (validation 0.989913). Jianing selected word/character TF-IDF + MiniLM(0.25), SVM C=1 on validation (0.974103), then performed a training-only CV stability check. The selection protocols differ and are stated explicitly.
 
-The supplied Kaggle screenshot records Public Scores of **0.92847** (Abishek, `stack_nbsvm_stylo.csv`), **0.89682** (Alma, `submission_rf_style.csv`) and **0.84249** (Jennie, `submission_Jennie_TF_MiniLM_SVM_C1.csv`). Abishek is continuing to improve the leading candidate. These are not final/private leaderboard scores. Local validation AUROC is separate.
+Public scores: Abishek 0.92847 and Alma 0.89682 from the previously supplied screenshot record; Jianing's updated 0.90456 was reported by Jianing on 2026-11-08. Earlier Jianing public 0.84249 is retained as history. None is a private score. Abishek remains the highest recorded public candidate, not a locked final version.
 
-## Reproducibility (Alma RF only)
+## Reproduction
 
-- Setup: Python 3.12; python -m pip install -r requirements.txt
-- Validation: python train.py --train data/train.csv --seed 42 --model-out artifacts/validation_model.joblib --results-dir results/reproduced
-- Full refit: python train.py --train data/train.csv --seed 42 --full --model-out artifacts/full_model.joblib --results-dir results/reproduced
-- Submission: python predict.py --test data/test.csv --template data/sample_submission.csv --model artifacts/full_model.joblib --out submission_rf_style.csv
-- Seeds: 42 for split, RF, and training CV.
-- Verification: the portable scripts reproduced AUROC 0.989913 and all 3,000 probabilities from the original exported candidate.
+See README for per-member working directories and separate environments.
 
-## Checklist
+- Alma validation/full training: `alma_rf/train.py`; probability prediction: `alma_rf/predict.py`.
+- Jianing experiments: `jianing_svm/notebooks/01_Jianing_TF_MiniLM_SVM.ipynb` or `src/run_jianing_notebook.py` from that member directory.
+- Jianing optimized probabilities after generating features: `python src/jianing_optimized_submission.py` from `jianing_svm/`.
+- Original-source receipts, all candidate scores, selected configurations, figures, and final member CSVs are included. Raw data, embeddings, caches and checkpoints are excluded.
 
-- [x] Prepared files are only under submissions/group-number-36/
-- [x] README documents environment, commands, and seeds
-- [x] Raw competition CSVs, secrets, checkpoints, and raw notebook previews excluded
-- [x] We did not retrieve hidden labels from RAID or elsewhere
-- [ ] Confirm remaining teammate identity and integrate team contributions
-- [x] Upload Alma's incremental migration commits preserving the documented local development sequence
-- [ ] Integrate Abishek's method, then document the final version and its training/prediction instructions once chosen and Jennie's experiments
-- [x] Record current Public Scores and filenames from the supplied Kaggle screenshot
-- [ ] Add submission IDs and confirm the final chosen version
-- [ ] Open one team PR from a writable course fork into sekhari/human-or-ai-submissions main
+## Before opening the final course PR
+
+- [x] All repository changes remain inside submissions/group-number-36/.
+- [x] Alma and Jianing code, environment specifications, candidate CSVs and comparison evidence included.
+- [x] Same validation ID membership verified for Alma and Jianing.
+- [x] Current public scores distinguished from validation/private scores and attributed to their sources.
+- [ ] Add Abishek's implementation and verify his split; confirm official identity.
+- [ ] Complete learning-curve and unlabeled-data experiments.
+- [ ] Select and document final team model; perform matching final-model error analysis.
+- [ ] Complete report, consolidated AI-use disclosure, submission identifiers and final selection.
+- [ ] Open one team PR into the recorded course destination sekhari/human-or-ai-submissions main, preserving meaningful history.

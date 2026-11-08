@@ -30,8 +30,8 @@ This interval does not account for all development/selection decisions and does 
 - Style features and character features are hypotheses about complementary information; improved scores do not establish a causal mechanism.
 - Length-bin AUROC and error IDs are saved separately. Failure hypotheses require reading the examples in context.
 - No test-label access, external labels, or Kaggle submission was used.
-- The teammate's local/Kaggle gap remains unexplained without their code, split, and predictions.
-- Frozen embeddings, unlabeled-data experiments, learning curves, and teammate ensembling remain future work.
+- At the time of this RF experiment, teammate code was unavailable. Jianing's code and matching validation IDs are now integrated under ../../jianing_svm/; the cause of the local-to-Kaggle gap remains unproven.
+- This RF run did not use frozen embeddings. Jianing's separate embedding experiments are now available; the required learning curve and unlabeled-data experiment, and optional team ensembling, remain to be integrated.
 
 ## Additional observations
 

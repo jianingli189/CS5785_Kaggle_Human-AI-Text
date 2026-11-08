@@ -1,65 +1,67 @@
 # Group Number 36 — Human or AI?
 
-## Contribution status and team model choice
+This branch contains **Alma's Random Forest work and Jianing's SVM/embedding work**. Abishek has the highest currently recorded public score; his implementation and the combined report still need integration. The final team model/version is not locked.
 
-**This directory contains Alma's Random Forest experiments and comparison results, not a finalized team submission. Abishek's model is the current leading candidate and is still being improved.**
+## Directory layout
 
-All three teammates' methods should be retained for comparison and reproducibility. Currently only Alma's code and results are present; Abishek's and Jennie's methods and the combined team report still need to be integrated. The current `train.py`, `predict.py`, notebooks and `results/submission_rf_style.csv` reproduce **Alma's RF candidate only**.
+```text
+submissions/group-number-36/
+├── README.md                  Team overview and runnable commands
+├── EXPERIMENT_HISTORY.md       Team integration history
+├── PULL_REQUEST_DRAFT.md       Draft for the eventual course PR
+├── team_results/              Public-score provenance and shared-split verification
+├── alma_rf/                   Alma's original RF code, notebooks, evidence and CSV
+└── jianing_svm/                Jianing's SVM notebook, optimization, evidence and CSVs
+    ├── notebooks/
+    ├── src/
+    ├── configs/
+    ├── data/splits/            IDs only; download raw data separately
+    ├── results/
+    ├── submissions/
+    └── requirements.txt
+```
 
-## Current Kaggle Public Scores (2026-11-07)
+Each member package has its own working directory and environment. Moving Alma's package as a unit preserves its relative paths. Raw data, embeddings, fitted model binaries, caches and virtual environments are excluded. Published notebook outputs are cleared; measured tables, figures, predictions and configurations are retained under each package's results directories.
 
-Transcribed from the team's Kaggle screenshot supplied by Alma. These are Public Scores, not private/final leaderboard results or local validation scores.
+## Team and current public scores — updated 2026-11-08
 
-| Contributor | Kaggle submitter | Submission file | Public Score |
-| --- | --- | --- | ---: |
-| Abishek (called Ali in conversation) | ac3388 | stack_nbsvm_stylo.csv | 0.92847 |
-| Liyan (Alma) Yang | Liyan Yang | submission_rf_style.csv | 0.89682 |
-| Jianing (Jennie) Li | Jianing Li | submission_Jennie_TF_MiniLM_SVM_C1.csv | 0.84249 |
+| Member | Cornell NetID | Candidate | Local validation AUROC | Kaggle public AUROC |
+| --- | --- | --- | ---: | ---: |
+| Abishek (Kaggle display name ac3388) | Pending confirmation | `stack_nbsvm_stylo.csv`; implementation not yet included | Not supplied | **0.92847** |
+| Liyan (Alma) Yang | ly462 | 21 style features + Random Forest | 0.989913 | 0.89682 |
+| Jianing Li | jl4837 | Word/character TF-IDF + chunked MiniLM(0.25), Linear SVM C=1 | 0.974103 | **0.90456** |
 
-Abishek's submission is currently the leading candidate and the team's intended direction. He is still improving it; the final model/version is not yet locked. The screenshot does not show a final submission selected. Model internals cannot be established from filenames alone.
+Alma's and Abishek's public values are retained from the previous team screenshot record (2026-11-07), not independently rechecked here. Jianing reported 0.90456 on 2026-11-08 for `submission_WordChar_MiniLM025_SVM_C1.csv`. Its bytes match the saved generation receipt; the repository copy is `jianing_svm/submissions/submission_Jianing_WordChar_MiniLM025_SVM_C1.csv`. The score itself is user-reported, not fetched from Kaggle. Public scores are not private/final results. Earlier Jianing score 0.84249 remains in `team_results/public_scores.csv` and historical records. Abishek's official full name and NetID cannot be inferred from a display name.
 
-The project planning document names the third teammate **Abishek**. His Kaggle display name is **ac3388**; full official name and Cornell NetID remain unconfirmed (the display name alone does not verify a NetID).
+Abishek remains the leading recorded public candidate, not a confirmed final choice. Preserve all member comparisons, including negative results. The relative ordering on validation differs from the public leaderboard; the cause of this gap is not established.
 
-## Team
+## Shared validation protocol
 
-- Kaggle team name: **Group Number 36** (confirmed by the user).
-- Liyan (Alma) Yang — **ly462** — Random Forest experiments and candidate predictions.
-- Jianing (Jennie) Li — **jl4837** — listed teammate; other method code is not included here.
-- Abishek — full name and NetID **pending confirmation**; other method code is not included here.
+Alma and Jianing use **identical article IDs** in the stratified 8,000/2,000 split, seed 42, with 1,000 articles per class in validation. Their manifest formats differ, so membership was compared by ID rather than by raw file hash. See `team_results/split_verification.json`. Abishek's split is not yet verified. AI is positive class 1; ID is never a predictor.
 
-## Setup
+Alma selected representations and RF parameters using training-only three-fold CV. Jianing's bounded representation/C search used the fixed validation set, followed by a training-only three-fold stability check of the selected configuration. The latter is **not nested CV of the search**; the selected validation score may be optimistic. Learned vocabularies and IDFs are refit within calibration/CV training folds. Frozen pretrained MiniLM is disclosed in the recorded configuration; no external prediction API received passages.
 
-Tested with Python **3.12.14**. From this directory:
+## Run Alma's RF package
+
+From `submissions/group-number-36/alma_rf/`, create a separate environment (originally tested with Python 3.12.14):
 
 ```bash
 python -m venv .venv
-# Windows PowerShell:
-.venv\Scripts\Activate.ps1
-# macOS/Linux instead: source .venv/bin/activate
+# macOS/Linux:
+source .venv/bin/activate
+# Windows PowerShell instead: .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
 
-Download competition data from Kaggle into `data/`: train.csv, test.csv, unlabeled.csv, sample_submission.csv, and optionally train_starter_2000.csv. Raw data and model checkpoints are not included.
-
-## Reproduce Alma's RF validation
+Put the competition files in `alma_rf/data/`.
 
 ```bash
 python train.py --train data/train.csv --seed 42 --model-out artifacts/validation_model.joblib --results-dir results/reproduced
-```
-
-Expected validation AUROC: **0.989913** with the documented versions, seed and original CSV order. The split is stratified: 8,000 training rows and 2,000 validation rows (1,000 per class).
-The 21-feature style transformer is in rf_features.py. The RF uses 200 trees, min_samples_leaf=2, max_features=sqrt, unlimited specified depth, and seed 42.
-
-## Regenerate Alma's RF candidate CSV (not the team final submission)
-
-```bash
 python train.py --train data/train.csv --seed 42 --full --model-out artifacts/full_model.joblib --results-dir results/reproduced
 python predict.py --test data/test.csv --template data/sample_submission.csv --model artifacts/full_model.joblib --out submission_rf_style.csv
 ```
 
-The full model is trained on all 10,000 supplied labeled examples. Output columns are id,label, where label is P(AI=1), for 3,000 test IDs in template order. The checked candidate is in results/submission_rf_style.csv. The supplied Kaggle screenshot shows `submission_rf_style.csv` with Public Score **0.89682**. This is separate from the local validation AUROC **0.989913**; matching the filename does not independently verify uploaded file bytes.
-
-## Reproduce experiments / notebooks
+Recorded original validation AUROC: 0.989913. During the 2026-11-08 relocation check on Jianing's Python 3.13 environment, the unchanged RF script produced 0.989905 (difference -0.000008). This cross-environment reproduction is recorded separately; the historical result is not overwritten. Candidate CSV: `alma_rf/results/submission_rf_style.csv`. To reproduce exploratory notebooks from the same directory:
 
 ```bash
 python run_notebook.py Alma_Random_Forest_Exploration.ipynb
@@ -67,29 +69,66 @@ python run_notebook.py Alma_RF_Improvements.ipynb
 python run_notebook.py Alma_RF_Kaggle_Export.ipynb
 ```
 
-Run from this team directory. The notebooks also open in PyCharm/Jupyter; install ipykernel if needed for interactive execution.
-The improvement notebook reuses the original baseline split/predictions stored in outputs/rf_20261107T193931_779056Z. New runs create separate output folders.
-Published notebook outputs are cleared to exclude raw passage previews and machine-specific runtime information; aggregate results are in results/.
+The export notebook now reads the tracked selected metadata from `results/run_metadata.json`, rather than requiring an absent historical output directory. Alma's feature code and model parameters are unchanged. Details: `alma_rf/EXPERIMENT_HISTORY.md` and `alma_rf/results/EXPERIMENT_REPORT.md`.
 
-## Experimental protocol and results
+## Run Jianing's SVM package
 
-Representations were selected by 3-fold stratified CV within the 8,000 training examples. Vectorizers were fitted separately within each fold. Four RF settings were compared for the selected representation. Validation IDs were fixed across all comparisons.
+From `submissions/group-number-36/jianing_svm/`, use a separate Python 3.13 environment (recorded experiments used 3.13.15 on Apple Silicon):
 
-| Representation | Mean CV AUROC | Validation AUROC |
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m ipykernel install --prefix "$VIRTUAL_ENV" --name kaggle-jianing --display-name "Python (Kaggle Jianing)"
+jupyter lab notebooks/01_Jianing_TF_MiniLM_SVM.ipynb
+```
+
+On Windows, activate `.venv\Scripts\Activate.ps1` and use `--prefix "$env:VIRTUAL_ENV"` for kernel installation. Put the supplied competition CSVs in `jianing_svm/data/raw/`. Run all notebook cells once to produce the feature cache and all experiments. First execution downloads the pinned public MiniLM weights; text is processed locally.
+
+Alternatively run without opening the browser:
+
+```bash
+# macOS/Linux: permit initial weight download
+HF_HUB_OFFLINE=0 python src/run_jianing_notebook.py
+# After weights are cached:
+python src/run_jianing_notebook.py
+```
+
+On Windows, set `$env:HF_HUB_OFFLINE="0"` before the first run. Notebook sections 1–6 cover TF, full-text chunked MiniLM and fusion. Sections 7–8 retain all 30 optimization candidates and the training-only CV diagnostic. Each run saves its configuration, timings, predictions and figures. Large processed matrices remain local.
+
+After the notebook completes:
+
+```bash
+# Latest reviewed optimized candidate, full 10,000-row refit:
+python src/jianing_optimized_submission.py
+# Earlier TF + MiniLM candidate, retained for comparison:
+python src/jianing_submission.py
+```
+
+The optimized entrypoint reads the recorded selected configuration, reproduces calibrated validation AUROC, and fits on all labels. Sigmoid calibration uses five stratified training-only folds (seed 42), with a fresh vocabulary/IDF within each fold and `ensemble=False`. Output is a new timestamped CSV under `jianing_svm/submissions/`, containing `id,label` where label is P(AI=1). It is not uploaded automatically. The old and optimized prediction scripts share the data/embedding helper in `src/jianing_submission.py`.
+
+### Jianing's recorded progression
+
+| Representation | C | Validation AUROC |
 | --- | ---: | ---: |
-| Word counts | 0.936462 | 0.944298 |
-| Word TF-IDF | 0.927524 | 0.932584 |
-| Style statistics | 0.985673 | 0.989913 |
-| Counts + style | 0.978003 | 0.981946 |
-| Binary word presence | 0.922607 | 0.931258 |
-| Character TF-IDF | 0.960135 | 0.961611 |
+| Normalized TF | 1 | 0.909056 |
+| Full-text chunked MiniLM | 10 | 0.803924 |
+| Equal-weight TF + MiniLM | 1 | 0.922313 |
+| Character TF-IDF | 1 | 0.972045 |
+| Word + character TF-IDF | 1 | 0.972561 |
+| Word + character TF-IDF + MiniLM(0.25) | 1 | **0.974103** |
 
-Original RF settings won the four-setting comparison. The main observed gain came from representation changes. Short-text AUROC rose from 0.883867 to 0.982366.
-At threshold 0.5, false positives increased from 39 to 49, while false negatives decreased from 206 to 47.
-Validation diagnostics informed the exploration, so the result is exploratory. It does not guarantee Kaggle generalization. English-word regexes and heuristic sentence splitting limit multilingual handling.
-Unlabeled-data experiments, learning curves, teammate methods and a complete team report are not included.
+Training-only three-fold means: previous TF+MiniLM 0.916529; optimized candidate 0.967231. These remain in-distribution diagnostics, not a guarantee of Kaggle performance. Complete scores, unsuccessful settings, length-bin comparisons, ROC figures and calibration receipts are under `jianing_svm/results/`. Original receipt filenames retain historical `Jennie` labels; all new member-facing names and executable paths use **Jianing**, with the alias mapping in `results/publication_provenance.json`.
 
-## History
+## Report requirements still to finish as a team
 
-EXPERIMENT_HISTORY.md records the actual sequence, hypotheses, negative results and verification. LOCAL_COMMIT_HISTORY.txt preserves the original local commit references and messages; the upload is a migration of that existing work.
-No hidden test labels or external supervised labels were retrieved. No external LLM API labeled or predicted test passages.
+| Requirement | Current evidence / remaining work |
+| --- | --- |
+| Q1: at least three approaches; tuning for at least two | Alma RF and Jianing SVM comparisons integrated; add Abishek's actual implementation/results and final selection rationale. Multiple SVM representations are not three different classifier families. |
+| Q2: 500/1,000/2,000/5,000/8,000 learning curve | Not yet included. Keep the same 2,000 validation IDs. |
+| Q3: use unlabeled.csv in a controlled experiment | Not yet included; this experiment is required even if the final model does not use unlabeled data. |
+| Q4: selected-model gap, at least three bins, five FP and five FN | Member diagnostics exist, but final-team-model analysis must match the eventual selected model and probabilities. |
+| Q5: hypothesis-driven improvement | Alma representation experiments and Jianing feature/fusion experiments provide evidence; report controls and limitations. |
+| Q6: reproducible code, meaningful history, AI disclosure | Commands and member history included. Final course PR URL, consolidated AI-use statement and complete report remain pending. |
+
+The provided template's 0.90 is a **provisional private-AUROC full-credit threshold**, not a local/public pass criterion; confirm the instructor's final announcement. Do not claim a private score before it is revealed. The final course PR destination recorded by the team is `sekhari/human-or-ai-submissions` (main); pushing this team branch alone is not that final course PR. See `PULL_REQUEST_DRAFT.md`.
