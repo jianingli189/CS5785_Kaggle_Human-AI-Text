@@ -1,4 +1,4 @@
-> Scope: Alma's Random Forest experiment report. Abishek's model is currently the leading candidate and is still being improved; the final version is not locked. The scores below are Alma's local experiment results, not Abishek's results or Kaggle leaderboard scores.
+> Alma’s Random Forest experiments on the shared 2,000-article validation set.
 
 # Random Forest improvement results
 
@@ -31,7 +31,6 @@ This interval does not account for all development/selection decisions and does 
 - Length-bin AUROC and error IDs are saved separately. Failure hypotheses require reading the examples in context.
 - No test-label access, external labels, or Kaggle submission was used.
 - At the time of this RF experiment, teammate code was unavailable. Jianing's code and matching validation IDs are now integrated under ../../jianing_svm/; the cause of the local-to-Kaggle gap remains unproven.
-- This RF run did not use frozen embeddings. Jianing's separate embedding experiments are now available; the required learning curve and unlabeled-data experiment, and optional team ensembling, remain to be integrated.
 
 ## Additional observations
 

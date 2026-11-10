@@ -16,8 +16,7 @@ Alma's original incremental commits and all RF comparisons are preserved in Git 
 - Confirmed Alma and Jianing have identical train/validation ID membership despite different manifest formats.
 - Organized member work into `alma_rf/` and `jianing_svm/`. Updated executable paths to use Jianing's requested name. Historic receipt filenames and prior score rows are preserved with explicit aliases.
 - Fixed Alma's export notebook to use the tracked selected metadata under `results/`, removing its dependency on an untracked historical output directory. RF settings were not changed.
-- Existing local checkout had unstaged deletions; integration was prepared in an isolated clone without touching that checkout.
 
-## Pending
+## November 10 — Team model selection
 
-Abishek's code and split verification; required learning curve; unlabeled-data experiment; final-model error analysis; consolidated report and AI disclosure; final course PR. Current public-score leader remains Abishek's recorded 0.92847 candidate, but the final team version is not locked.
+The team selected Abishek’s stack_nbsvm_stylo.csv (public AUROC 0.92847). His separate rank-average experiment combined four NB-weighted logistic models and one stylometric gradient boosting model. Jianing evaluated five training sizes from 500 through 8,000. See the team README for results.

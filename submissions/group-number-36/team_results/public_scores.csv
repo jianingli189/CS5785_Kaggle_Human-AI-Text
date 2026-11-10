@@ -1,5 +1,10 @@
-member,submission_file,public_AUROC,reported_date,source,status
-Abishek,stack_nbsvm_stylo.csv,0.92847,2026-11-07,Previously recorded team screenshot supplied by Alma; not reverified here,highest currently recorded public score; code pending
-Liyan (Alma) Yang,submission_rf_style.csv,0.89682,2026-11-07,Previously recorded team screenshot supplied by Alma; not reverified here,RF comparison candidate
-Jianing Li,submission_Jennie_TF_MiniLM_SVM_C1.csv,0.84249,2026-11-06,Jianing reported score in chat; also present in historical team screenshot record,earlier candidate; original uploaded filename retained
-Jianing Li,submission_WordChar_MiniLM025_SVM_C1.csv,0.90456,2026-11-08,Jianing reported score in chat; not independently retrieved from Kaggle,latest Jianing candidate; repository alias starts submission_Jianing_
+member,submission_file,public_AUROC,description
+Abishek,stack_nbsvm_stylo.csv,0.92847,Team choice
+Abishek,stack_v3.csv,0.92729,Comparison
+Abishek,rankavg_v2.csv,0.92568,Comparison
+Abishek,rankavg_v1.csv,0.92390,Comparison
+Abishek,prob_average_final.csv,0.92207,Comparison
+Jianing Li,submission_Jianing.csv,0.90977,Binary TF-IDF and MiniLM
+Jianing Li,submission_WordChar_MiniLM025_SVM_C1.csv,0.90456,Word/character TF-IDF and MiniLM
+Liyan Yang,submission_rf_style.csv,0.89682,Random Forest
+Jianing Li,submission_Jennie_TF_MiniLM_SVM_C1.csv,0.84249,TF and MiniLM
