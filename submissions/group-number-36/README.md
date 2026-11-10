@@ -33,3 +33,7 @@ Place the competition files **train.csv**, **test.csv** and **sample_submission.
 - **Jianing.** Experiments compare term frequencies, frozen MiniLM and feature fusion. The learning-curve experiment refits vocabularies and IDF on each balanced subset. Validation AUROC increased from 0.890852 at 500 passages to 0.974103 at 8,000. [Training-size results](jianing_svm/results/learning_curve/learning_curve.csv)
 
 [Experiment history](EXPERIMENT_HISTORY.md) · [Data split](jianing_svm/data/splits/seed42_stratified_8000_2000.csv)
+
+## Unlabeled-data experiment
+
+[Experiment and reproduction instructions](abi_unlabeled/README.md). Adding 3,000 unlabeled passages to vocabulary fitting in the reconstructed stack changed fixed-validation AUROC from **0.988825 to 0.988813**. [Supervised reconstruction and separate SVM control](group36_evidence/) · [Paired validation comparison](abi_unlabeled/results/comparison.json).
