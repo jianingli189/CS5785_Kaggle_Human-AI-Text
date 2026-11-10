@@ -6,9 +6,9 @@ Abishek’s available comparison notebook evaluates a five-model ensemble. Four 
 
 | Contributor | Model | Held-out AUROC | Experiments |
 | --- | --- | ---: | --- |
-| Abishek | Five-model rank average | 0.989949 | [Rank-average notebook](abishek_ensemble/rank_average.ipynb) · [Model comparison](abishek_ensemble/results/model_comparison.csv) |
-| Liyan (Alma) Yang | Random Forest on 21 writing-style features | 0.989913 | [Experimental report](alma_rf/results/EXPERIMENT_REPORT.md) · [Run instructions](alma_rf/README.md) |
-| Jianing Li | Word and character TF-IDF, chunked MiniLM and linear SVM | 0.974103 | [Experiments and run instructions](jianing_svm/README.md) · [Learning curve](jianing_svm/results/learning_curve/learning_curve.png) |
+| Abishek Chozhan (ac3388) | Five-model rank average | 0.989949 | [Rank-average notebook](abishek_ensemble/rank_average.ipynb) · [Model comparison](abishek_ensemble/results/model_comparison.csv) |
+| Liyan Yang (ly462) | Random Forest on 21 writing-style features | 0.989913 | [Experimental report](alma_rf/results/EXPERIMENT_REPORT.md) · [Run instructions](alma_rf/README.md) |
+| Jianing Li (jl4837) | Word and character TF-IDF, chunked MiniLM and linear SVM | 0.974103 | [Experiments and run instructions](jianing_svm/README.md) · [Learning curve](jianing_svm/results/learning_curve/learning_curve.png) |
 
 All three approaches use the same stratified partition of 8,000 training and 2,000 validation passages, with seed 42. The public scores in [the submission history](team_results/public_scores.csv) are keyed by filename. Jianing’s binary TF-IDF SVM scored 0.90977 on the public leaderboard and 0.977117 on validation.
 
@@ -37,3 +37,5 @@ Place the competition files **train.csv**, **test.csv** and **sample_submission.
 ## Unlabeled-data experiment
 
 [Experiment and reproduction instructions](abi_unlabeled/README.md). Adding 3,000 unlabeled passages to vocabulary fitting in the reconstructed stack changed fixed-validation AUROC from **0.988825 to 0.988813**. [Supervised reconstruction and separate SVM control](group36_evidence/) · [Paired validation comparison](abi_unlabeled/results/comparison.json).
+
+The team reports **0.92117 public AUROC** for the unlabeled-vocabulary submission. The retained historical submission has public AUROC 0.92847.
